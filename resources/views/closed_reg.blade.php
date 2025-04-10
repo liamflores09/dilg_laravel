@@ -25,7 +25,7 @@
 
 
     <style>
-        ..navbar {
+        .navbar {
             padding: 15px 30px;
             background-color: #f8f9fa;
         }
@@ -90,7 +90,6 @@
             .card {
                 margin: 0 15px;
                 padding: 15px;
-
             }
         }
 
@@ -150,31 +149,11 @@
     <!-- Colored Rectangle -->
     <div class="colored-rectangle shadow-sm"></div>
 
-    <!-- Modal for Validation Errors -->
-    <div class="modal modal-blur fade" id="errorModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title text-danger fw-bold">Duplicate Email Entry</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <ul id="errorMessages">
-                        <!-- Error messages will be dynamically added here -->
-                    </ul>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="container mt-5">
     <!-- Row to center the card -->
     <div class="row justify-content-center">
         <div class="col-md-10">
-            <div class="card mb-5 mt-2"> <!-- Added 'mx-3' class to add margin on left and right -->
+            <div class="card mb-5 mt-5"> <!-- Added 'mx-3' class to add margin on left and right -->
                 <div class="card-body">
                     <div class="d-flex justify-content-center align-items-center mt-5 mb-3">
                         <i class="fa-solid fa-lock" style="font-size: 80px; color: #6E6F78"></i>

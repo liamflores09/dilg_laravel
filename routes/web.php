@@ -33,3 +33,7 @@ Route::get('/admin/dashboard', [RegistrationController::class, 'showRegistration
 // Registration Closed
 
 Route::get('/sessions-closed', [RegistrationController::class, 'showClosedReg'])->name('sessions.closed');
+
+
+Route::get('/register', [RegistrationController::class, 'showForm'])->name('register.form');
+Route::post('/register', [RegistrationController::class, 'handleFormSubmission'])->name('register.submit');
