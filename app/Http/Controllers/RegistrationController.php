@@ -9,9 +9,16 @@ class RegistrationController extends Controller
 {
     public function showForm()
     {
+        // Get the current count of registrants for both breakout sessions
         $bs1Count = RegistrationEntry::where('breakout_session', 'bs1')->count();
         $bs2Count = RegistrationEntry::where('breakout_session', 'bs2')->count();
 
+        // If both sessions are full, redirect to the closed_reg page
+        if ($bs1Count >= 10 && $bs2Count >= 10) {
+            return redirect()->route('sessions.closed');
+        }
+
+        // Otherwise, return the registration form
         return view('register', compact('bs1Count', 'bs2Count'));
     }
 
@@ -23,7 +30,7 @@ class RegistrationController extends Controller
             return redirect()->route('register.form')->withErrors(['msg' => 'The maximum number of registrations has been reached.']);
         }
 
-        // Check if selected breakout session is full
+        // Check if the selected breakout session is full
         if (
             ($request->breakout_session === 'bs1' && RegistrationEntry::where('breakout_session', 'bs1')->count() >= 10) ||
             ($request->breakout_session === 'bs2' && RegistrationEntry::where('breakout_session', 'bs2')->count() >= 10)
@@ -43,10 +50,10 @@ class RegistrationController extends Controller
             'designation' => 'required|string',
             'breakout_session' => 'required|string',
         ], [
-            'email.unique' => 'This email address has already been used for registration. Please use a different email. ',
+            'email.unique' => 'This email address has already been used for registration. Please use a different email.',
         ]);
 
-        // Create the entry in the database
+        // Create the registration entry
         RegistrationEntry::create($validated);
 
         return redirect()->route('register.form')->with('success', 'Registration successful!');
@@ -62,5 +69,11 @@ class RegistrationController extends Controller
         $bs2Count = RegistrationEntry::where('breakout_session', 'bs2')->count();
 
         return view('admin.dashboard', compact('registrations', 'bs1Count', 'bs2Count'));
+    }
+
+    // Show the "Sessions Full" page if both breakout sessions are full
+    public function showClosedReg()
+    {
+        return view('closed_reg'); // Render the closed_reg.blade.php view
     }
 }

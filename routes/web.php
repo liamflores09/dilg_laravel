@@ -30,3 +30,6 @@ Route::get('admin/logout', function () {
 
 Route::get('/admin/dashboard', [RegistrationController::class, 'showRegistrations'])->name('admin.dashboard');
 
+// Registration Closed
+
+Route::get('/sessions-closed', [RegistrationController::class, 'showClosedReg'])->name('sessions.closed');
