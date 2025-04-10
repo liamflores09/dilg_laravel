@@ -1,0 +1,148 @@
+
+        .navbar {
+            padding: 15px 30px;
+            background-color: #f8f9fa;
+        }
+
+        .navbar-brand-image {
+            width: 99px;
+            height: 99px;
+            margin-left: 20px;
+            margin-right: -25px;
+        }
+
+        .text-container {
+            font-family: 'Barlow', sans-serif;
+            margin-left: 25px;
+            margin-top: auto;
+        }
+
+        .main-text {
+            font-size: 26px;
+        }
+
+        .sub-text {
+            font-weight: 800;
+            font-size: 36px;
+            margin: 0;
+        }
+
+        hr {
+            width: 100%;
+            margin: 5px 0;
+            color: black;
+        }
+
+        .colored-rectangle {
+            background-color: #F0CF0A;
+            height: 22px;
+            width: 100%;
+        }
+
+        .card-title {
+            text-align: center;
+            font-size: 36px;
+            font-family: 'Barlow', sans-serif;
+            font-weight: 700;
+        }
+
+        .card {
+            backdrop-filter: blur(5px);
+            background-color: rgba(249, 249, 249, 0.6);
+            border-radius: 30px;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
+            padding-left: 50px;
+            padding-right: 50px;
+        }
+
+        .form-control {
+            border-radius: 5px;
+            height: 58px;
+        }
+
+        #submit {
+            margin-right: 18px;
+            margin-left: 18px;
+            background-color: #011D93;
+        }
+
+        /* Add responsiveness */
+        @media (max-width: 768px) {
+            .card {
+                margin: 0 15px;
+                padding: 15px;
+
+            }
+        }
+
+        /* Custom styles for input group */
+        .custom-input-group {
+            background-color: white;
+            border: 1px solid white;
+            color: #011D93;
+        }
+
+        .swoosh-image {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            z-index: -1;
+            margin: -8px;
+            width: 1000px;
+            height: auto;
+        }
+
+        @media (max-width: 768px) {
+            .swoosh-image {
+                width: 30%;
+                max-width: 150px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .swoosh-image {
+                width: 40%;
+                max-width: 120px;
+            }
+        }
+
+        .form-label,
+        .form-control,
+        select,
+        #submit {
+            font-family: 'Montserrat', sans-serif;
+            border: none;
+        }
+
+        /* You can also apply it to the button and text */
+        button,
+        .text-center {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .form-control {
+            border-radius: 5px;
+            height: 58px;
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 5px 0px;
+            /* Add a subtle shadow */
+        }
+
+        .form-control:focus {
+            box-shadow: rgba(0, 123, 255, 0.5) 0px 0px 8px 0px;
+            /* Blue shadow on focus */
+            border-color: #011D93;
+            /* Optional: Change border color on focus */
+        }
+
+        .btn.red-icon {
+            background-color: transparent;
+            border: none;
+            padding: 0;
+            color: #A81E24;
+            font-size: 15px;
+            /* margin-left: 375px; */
+        }
+  
