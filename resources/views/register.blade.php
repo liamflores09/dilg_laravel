@@ -351,13 +351,23 @@
                                 <div class="input-group">
                                     <span class="input-group-text custom-input-group"><i
                                             class="fa-solid fa-location-pin"></i></span>
-                                    <select class="form-control" name="breakout_session" required>
-                                        <option value="" disabled selected>Breakout Session</option>
-                                        <option value="bs1" {{ old('breakout_session') == 'bs1' ? 'selected' : '' }}>
-                                            Digital Transformation in Local Governance Session</option>
-                                        <option value="bs2" {{ old('breakout_session') == 'bs2' ? 'selected' : '' }}>
-                                            Disaster Risk Reduction and Climate Resilience Session</option>
-                                    </select>
+                                            <select class="form-control" name="breakout_session" required>
+                                                <option value="" disabled selected>Breakout Session</option>
+                                                <option value="bs1" 
+                                                    {{ old('breakout_session') == 'bs1' ? 'selected' : '' }} 
+                                                    {{ $bs1Count >= 10 ? 'disabled' : '' }}>
+                                                    Digital Transformation in Local Governance Session 
+                                                    {{ $bs1Count >= 10 ? '(Session Capacity Full)' : '' }}
+                                                </option>
+
+                                                <option value="bs2" 
+                                                    {{ old('breakout_session') == 'bs2' ? 'selected' : '' }} 
+                                                    {{ $bs2Count >= 10 ? 'disabled' : '' }}>
+                                                    Disaster Risk Reduction and Climate Resilience Session 
+                                                    {{ $bs2Count >= 10 ? '(Session Capacity Full)' : '' }}
+                                                </option>
+                                            </select>
+
                                     <!-- @error('breakout_session')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror -->

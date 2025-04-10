@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\RegistrationEntry;
 use Illuminate\Http\Request;
 
-
 class RegistrationController extends Controller
 {
     public function showForm()
     {
-        return view('register');
+        $bs1Count = RegistrationEntry::where('breakout_session', 'bs1')->count();
+        $bs2Count = RegistrationEntry::where('breakout_session', 'bs2')->count();
+
+        return view('register', compact('bs1Count', 'bs2Count'));
     }
 
     public function handleFormSubmission(Request $request)
@@ -19,6 +21,16 @@ class RegistrationController extends Controller
         $totalEntries = RegistrationEntry::count();
         if ($totalEntries >= 2000) {
             return redirect()->route('register.form')->withErrors(['msg' => 'The maximum number of registrations has been reached.']);
+        }
+
+        // Check if selected breakout session is full
+        if (
+            ($request->breakout_session === 'bs1' && RegistrationEntry::where('breakout_session', 'bs1')->count() >= 10) ||
+            ($request->breakout_session === 'bs2' && RegistrationEntry::where('breakout_session', 'bs2')->count() >= 10)
+        ) {
+            return redirect()->route('register.form')
+                ->withErrors(['breakout_session' => 'The selected breakout session is already full.'])
+                ->withInput();
         }
 
         // Validate the incoming request
@@ -34,36 +46,21 @@ class RegistrationController extends Controller
             'email.unique' => 'This email address has already been used for registration. Please use a different email. ',
         ]);
 
-        // Try to create the entry in the database
-        // try {
-        //     RegistrationEntry::create($validated);
-        // } catch (\Illuminate\Database\QueryException $e) {
-        //     // Check if it's a duplicate email error (SQL error code for duplicate entry is 1062)
-        //     if ($e->getCode() == '23000') {
-        //         // Handle the duplicate email error
-        //         return redirect()->route('register.form')
-        //             ->withErrors(['email' => 'This email has already been registered.'])
-        //             ->withInput();  // Use withInput() to retain form data
-        //     }
-        //     // Handle other exceptions
-        //     return redirect()->route('register.form')->withErrors(['msg' => 'An error occurred. Please try again later.']);
-        // }
-
         // Create the entry in the database
         RegistrationEntry::create($validated);
 
         return redirect()->route('register.form')->with('success', 'Registration successful!');
     }
+
     public function showRegistrations()
     {
         // Get 20 registrations per page
         $registrations = RegistrationEntry::paginate(20);
 
         // Count registrations for Breakout Session 1 and Breakout Session 2
-        $bs1Count = RegistrationEntry::where('breakout_session', 'BS1')->count();
-        $bs2Count = RegistrationEntry::where('breakout_session', 'BS2')->count();
+        $bs1Count = RegistrationEntry::where('breakout_session', 'bs1')->count();
+        $bs2Count = RegistrationEntry::where('breakout_session', 'bs2')->count();
 
         return view('admin.dashboard', compact('registrations', 'bs1Count', 'bs2Count'));
     }
-
 }
