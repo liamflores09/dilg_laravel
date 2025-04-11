@@ -76,9 +76,9 @@
       
         }
         .status1 {
-            font-family: 'Barlow Semi Condensed', sans-serif;
+            font-family: 'Barlow', sans-serif;
             font-weight: 800;
-            font-size: 30px;
+            font-size: 34px;
             text-align: center;
         }
         .highlight-text {
@@ -156,7 +156,7 @@
             <div class="card mb-5 mt-5"> <!-- Added 'mx-3' class to add margin on left and right -->
                 <div class="card-body">
                     <div class="d-flex justify-content-center align-items-center mt-5 mb-3">
-                        <i class="fa-solid fa-lock" style="font-size: 80px; color: #6E6F78"></i>
+                        <i class="fa-solid fa-file-circle-xmark" style="font-size: 80px; color: #6E6F78"></i>
                     </div>
                     <h1 class="mt-5 status1" style="color: #6E6F78">Registration is now closed.</h1>
                     <h1 class="status1" style="color: #6E6F78">We have reached the <span

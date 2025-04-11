@@ -173,16 +173,16 @@
 
         <!-- Search & Filter -->
         <div class="row mb-3 search-filter-bar">
-            <div class="col-md-6">
+            <div>
                 <input type="text" id="searchInput" class="form-control" placeholder="Search...">
             </div>
-            <div class="col-md-6">
+            <!-- <div class="col-md-6">
                 <select id="breakoutFilter" class="form-control">
                     <option value="">Filter by Breakout Session</option>
                     <option value="BS1">BS1</option>
                     <option value="BS2">BS2</option>
                 </select>
-            </div>
+            </div> -->
         </div>
 
 
