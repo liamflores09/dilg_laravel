@@ -173,16 +173,16 @@
 
         <!-- Search & Filter -->
         <div class="row mb-3 search-filter-bar">
-            <div>
+            <div class="col-md-6">
                 <input type="text" id="searchInput" class="form-control" placeholder="Search...">
             </div>
-            <!-- <div class="col-md-6">
+            <div class="col-md-6">
                 <select id="breakoutFilter" class="form-control">
                     <option value="">Filter by Breakout Session</option>
                     <option value="BS1">BS1</option>
                     <option value="BS2">BS2</option>
                 </select>
-            </div> -->
+            </div>
         </div>
 
 
@@ -237,7 +237,7 @@
 
                                             <td>
                                                 @php
-                                                    $lguFormatted = match(strtolower($registration->lgu)) {
+                                                    $lguFormatted = match (strtolower($registration->lgu)) {
                                                         'region1' => 'Region I (Ilocos Region)',
                                                         'region2' => 'Region II (Cagayan Valley)',
                                                         default => $registration->lgu,
@@ -280,9 +280,17 @@
                     // Check if any cell in the row matches the search query
                     const matchesSearch = cells.some(cell => cell.textContent.toLowerCase().includes(search));
 
-                    // Check if the row matches the breakout session filter (if set)
-                    const breakoutSession = cells[6]?.textContent.toLowerCase(); // Assuming breakout session is in column 6 (index starts at 0)
+                    let breakoutSession = cells[6]?.textContent.toLowerCase().trim();
+
+                    // Normalize displayed text back to BS1 or BS2
+                    if (breakoutSession.includes("breakout session 1")) {
+                        breakoutSession = "bs1";
+                    } else if (breakoutSession.includes("breakout session 2")) {
+                        breakoutSession = "bs2";
+                    }
+
                     const matchesFilter = filter === "" || breakoutSession === filter;
+
 
                     // Show or hide row based on both search and filter conditions
                     row.style.display = (matchesSearch && matchesFilter) ? "" : "none";
